@@ -36,46 +36,48 @@ const calculaResultado = () => {
 </script>
 
 <template>
-  <div class="container">
-    <h1>calculadora em vue.js</h1>
-    <form @submit.prevent="">
-      <div class="row mb-3">
-        <label for="firstNumber" class="col-sm-2 col-form-label">primeiro número</label>
-        <div class="col-sm-10">
-          <input @keyup="evento => estado.primeiroNumero = evento.target.value" @change="calculaResultado"
-            :value="estado.primeiroNumero" type="number" name="firstNumber" id="firstNumber" placeholder="escolha um número"
-            class="form-control" value="0">
+  <div class="wrapper">
+    <div class="container">
+      <h1>Basic Calculator</h1>
+      <form @submit.prevent="">
+        <div class="row mb-3">
+          <label for="firstNumber" class="col-sm-2 col-form-label">First Number</label>
+          <div class="col-sm-10">
+            <input @keyup="evento => estado.primeiroNumero = evento.target.value" @change="calculaResultado"
+              :value="estado.primeiroNumero" type="number" name="firstNumber" id="firstNumber" placeholder="escolha um número"
+              class="form-control" value="0">
+          </div>
         </div>
-      </div>
-      <div class="row mb-3">
-        <label for="operation" class="col-sm-2 col-form-label">operação</label>
-        <div class="col-sm-10">
-          <select name="operation" id="operation" class="form-select" :value="estado.operacao" @change="alteraOperacao">
-            <option value="soma">+</option>
-            <option value="subtracao">-</option>
-            <option value="multiplicacao">*</option>
-            <option value="divisao">/</option>
-          </select>
+        <div class="row mb-3">
+          <label for="operation" class="col-sm-2 col-form-label">Operation</label>
+          <div class="col-sm-10">
+            <select name="operation" id="operation" class="form-select" :value="estado.operacao" @change="alteraOperacao">
+              <option value="soma">+</option>
+              <option value="subtracao">-</option>
+              <option value="multiplicacao">*</option>
+              <option value="divisao">/</option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="row mb-3">
-        <label for="secondNumber" class="col-sm-2 col-form-label">segundo número</label>
-        <div class="col-sm-10">
-          <input @keyup="evento => estado.segundoNumero = evento.target.value" @change="calculaResultado"
-            :value="estado.segundoNumero" type="number" name="secondNumber" id="secondNumber" placeholder="escolha outro número"
-            class="form-control" value="0">
+        <div class="row mb-3">
+          <label for="secondNumber" class="col-sm-2 col-form-label">Second Number</label>
+          <div class="col-sm-10">
+            <input @keyup="evento => estado.segundoNumero = evento.target.value" @change="calculaResultado"
+              :value="estado.segundoNumero" type="number" name="secondNumber" id="secondNumber" placeholder="escolha outro número"
+              class="form-control" value="0">
+          </div>
         </div>
-      </div>
-      
-      <div class="row mb-3">
-        <label for="resultNumber" class="col-sm-2 col-form-label resultado">resultado</label>
-        <div class="col-sm-10">
-          <input v-if="estado.calculoPossivel === true" type="number" :value="estado.resultado" name="resultNumber"
-            id="resultNumber" placeholder="Resultado" class="form-control" value="0" readonly>
-          <span v-else>Não é possível dividir por 0 (Zero)</span>
+        
+        <div class="row mb-3">
+          <label for="resultNumber" class="col-sm-2 col-form-label resultado">Result</label>
+          <div class="col-sm-10">
+            <input v-if="estado.calculoPossivel === true" type="number" :value="estado.resultado" name="resultNumber"
+              id="resultNumber" placeholder="Resultado" class="form-control" value="0" readonly>
+            <span v-else>It is not possible to divide by 0 (zero).</span>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -87,16 +89,24 @@ const calculaResultado = () => {
     box-sizing: border-box;
   }
 
+  .wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+  }
+
   .container {
     width: fit-content;
     background-color: white;
-    margin: 0 auto;
     padding: 32px 32px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     border-radius: 8px;
     border: 1px solid #DCDCDC;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .container h1 {
